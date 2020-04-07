@@ -6,22 +6,22 @@
 
 (defn start
   []
-  (println "Starting server...")
+  (println "[LOG] Starting server...")
   (let [host (or (config :server-host) "localhost")
         port (or (config :server-port) "8002")
         server (jetty/run-jetty (var app/api-handler)
                                 {:host host
                                  :port (Integer/parseInt port)
                                  :join? false})]
-    (println "Server started")
-    (println (str "You can view the site at http://" host ":" port))
+    (println "[LOG] Server started")
+    (println (str "[LOG] You can view the site at http://" host ":" port))
     server))
 
 (defn stop
   [instance]
   (when instance
     (.stop instance))
-  (println "Server stopped"))
+  (println "[LOG] Server stopped"))
 
 (defn -main
   []

@@ -8,5 +8,5 @@
 (defroutes api-handler
   (-> (routes
         search-routes
-        (route/not-found "API not found"))
+        (route/not-found "API action not found. Only '/search' action allowed"))
       (handler/api)))

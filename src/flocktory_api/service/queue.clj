@@ -1,66 +1,41 @@
 (ns flocktory_api.service.queue
-  (:require [clojure.core.async :as async :refer :all]))
+  (:require
+    [clojure.core.async :as async :refer (go >! chan <! close! <!!)]))
 
-(def MAX_REQUEST 10)
+(defn work-parallel [queries max_requests worker processor]
+  (let [tasks (async/chan)
+        workers (async/chan max_requests)
+        results (async/chan)
+        begin (System/currentTimeMillis)
+        res (atom [])]
 
-(def workers (atom MAX_REQUEST))
+    ; populate tasks
+    (async/go
+      (doseq [q queries] (async/>! tasks q))
+      (close! tasks))
 
+    ; populate workers pool
+    (doseq [i (range max_requests)] (async/>!! workers i))
 
-(defn async-get [url result]
-  (org.httpkit.client/get url #(go (>! result %))))
+    (async/go
+      (loop []
+        (let [q (async/<! tasks)]
+          (if q
+            (let [w (async/<! workers)]
+              (worker q (fn [resp]
+                ; (Thread/sleep 3000)
+                (async/>!! results (processor resp))
+                (async/>!! workers w)
+               ))
+              (recur))
+            (async/close! workers)
+            ))))
 
+    ; collect results
+    (doseq [i (range (count queries))]
+      (swap! res concat (async/<!! results)))
 
-(def queries ["1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" ])
-
-(def c (chan 1))
-
-
-(go-loop []
-  (let [v (<! c)]
-    (if v
-      (do
-        (println "Got a value in this loop:" v)
-        (recur))
-      (println "CLOSING"))))
-
-
-
-
-(defn mydo [queries]
-  (let [c (chan MAX_REQUEST)]
-    (go 
-      (doseq [q queries] (>! c q))
-      (close! c))
-
-    (loop []
-      (let [q (<!! c)]
-        (if q
-          (do
-            (go)
-            (println "Start download: " v)
-            (recur))
-          (println "CLOSING"))))
-))
-
-
-;;
-;; A simple in-memory database for testing purpose.
-;; 
-
-(def database (atom {}))
-
-;;
-;; User management
-;; 
-
-(defn get-user
-  "Returns the user corresponding to the given username."
-  [username]
-  (@database username))
-
-(defn add-user
-  "Add a new user to database."
-  [{:keys [username] :as user}]
-  (when (and username
-             (not (get-user username)))
-    (swap! database assoc (:username user) user)))
+    (async/close! results)
+    (println "[LOG] Fetch time: " (- (System/currentTimeMillis) begin))
+    @res
+    ))

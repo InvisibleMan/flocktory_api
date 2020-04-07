@@ -9,7 +9,11 @@
                  [liberator "0.11.0"]
                  [cheshire "5.9.0"]
                  [http-kit "2.3.0"]
-                 [org.clojure/core.async "0.4.500"]]
+                 [http-kit.fake "0.2.2"]
+                 [org.clojure/core.async "0.4.500"]
+                 [adamwynne/feedparser-clj "0.5.2"]
+                 [lambdaisland/uri "1.2.1"]
+                 ]
   :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.3.1"]]
                    :source-paths ["dev"]}}
   :plugins [[lein-ring "0.12.5"]]

@@ -26,11 +26,14 @@ lein ring uberwar
 Launch the REPL the following commands:
 ```shell
 lein repl
+(require '[flocktory_api.model.queue :as q])
+
 ```
 
 Then run server:
 ```shell
 (user/go)
+(def feed (slurp "./fixtures/scala02.xml"))
 ```
 
 ## License
