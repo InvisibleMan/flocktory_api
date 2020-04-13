@@ -1,4 +1,4 @@
-(ns flocktory_api.service.queue
+(ns flocktory-api.service.queue
   (:require
     [clojure.core.async :as async :refer (go >! chan <! close! <!!)]))
 

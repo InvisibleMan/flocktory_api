@@ -1,4 +1,4 @@
-(ns flocktory_api.service.json
+(ns flocktory-api.service.json
   (:require [cheshire.core :refer [generate-string]]
             [clojure.string :as str]))
 

@@ -1,8 +1,9 @@
-(ns flocktory_api.api.search
+(ns flocktory-api.api.search
   (:require [compojure.core :refer [defroutes GET]]
             [liberator.core :refer [defresource]]
-            [flocktory_api.model.analyzer :as analyzer]
-            [flocktory_api.service.json :refer [clj->json]]))
+            [flocktory-api.model.analyzer :as analyzer]
+            [flocktory-api.service.json :refer [clj->json]]
+            ))
 
 (defresource search
   [request]

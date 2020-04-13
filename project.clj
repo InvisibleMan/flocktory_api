@@ -14,8 +14,10 @@
                  [adamwynne/feedparser-clj "0.5.2"]
                  [lambdaisland/uri "1.2.1"]
                  ]
-  :profiles {:dev {:dependencies [[org.clojure/tools.namespace "0.3.1"]]
-                   :source-paths ["dev"]}}
+  :profiles {
+    :dev {:dependencies [[org.clojure/tools.namespace "0.3.1"]]
+          :source-paths ["dev"]}
+    :test {:env {:clj-env :test}}}
   :plugins [[lein-ring "0.12.5"]]
   :ring {:handler flocktory_api.app/api-handler}
-  :main flocktory_api.server)
+  :main flocktory-api.server)

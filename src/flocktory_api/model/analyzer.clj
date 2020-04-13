@@ -1,8 +1,8 @@
-(ns flocktory_api.model.analyzer
+(ns flocktory-api.model.analyzer
   (:require 
-    [flocktory_api.service.queue :as q]
-    [flocktory_api.service.fetcher :as f]
-    [flocktory_api.service.rss :as rss]
+    [flocktory-api.service.queue :as q]
+    [flocktory-api.service.fetcher :as f]
+    [flocktory-api.service.rss :as rss]
     [clojure.core.async :as async :refer (go >! chan <! close! <!!)]
     [lambdaisland.uri :as uri]
     [clojure.string :as str]))

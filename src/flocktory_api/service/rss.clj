@@ -1,4 +1,4 @@
-(ns flocktory_api.service.rss
+(ns flocktory-api.service.rss
   (:require [feedparser-clj.core :as feeds]
             [clojure.java.io :as io]))
 

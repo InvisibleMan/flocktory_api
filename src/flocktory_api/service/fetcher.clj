@@ -1,4 +1,4 @@
-(ns flocktory_api.service.fetcher
+(ns flocktory-api.service.fetcher
   (:require [org.httpkit.client :as httpkit]
             [org.httpkit.fake :as fake]
             [clojure.string :as str]))

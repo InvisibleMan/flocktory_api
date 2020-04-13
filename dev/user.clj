@@ -11,7 +11,7 @@
    [clojure.string :as str]
    [clojure.test :as test]
    [clojure.tools.namespace.repl :refer (refresh refresh-all)]
-   [flocktory_api.server :as server]))
+   [flocktory-api.server :as server]))
 
 ;; Map containing the application under development.
 (defonce system {})

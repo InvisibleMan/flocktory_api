@@ -1,7 +1,7 @@
-(ns flocktory_api.server
+(ns flocktory-api.server
   (:require [ring.adapter.jetty :as jetty]
-            [flocktory_api.config :refer [config]]
-            [flocktory_api.app :as app])
+            [flocktory-api.config :refer [config]]
+            [flocktory-api.app :as app])
   (:gen-class))
 
 (defn start

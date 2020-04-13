@@ -1,4 +1,4 @@
-(ns flocktory_api.config
+(ns flocktory-api.config
   (:require [clojure.string :as str]))
 
 (defn- env
