@@ -6,5 +6,4 @@
   "Converts Clojure data to JSON."
   [data]
 
-  (println (str "[LOG] to json: " data))
   (generate-string data {:pretty true}))

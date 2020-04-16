@@ -1,6 +1,5 @@
 (ns flocktory-api.service.fetcher
   (:require [org.httpkit.client :as httpkit]
-            [org.httpkit.fake :as fake]
             [clojure.string :as str]))
 
 (def http_opts {
@@ -13,12 +12,8 @@
     }})
 
 (defn async-get [url cb]
-  (println (str "[LOG] fetch url: " url))
+  (println (str "[LOG] fetch url: '" url "'. Start."))
   (httpkit/get url http_opts (fn [res]
     (let [body (:body res)]
-      (println (str "[LOG] fetch url: '" url "'. Completed. Status: " (:status res)))
+      (println (str "[LOG] fetch url: '" url "'. Finish. Status: " (:status res)))
       (cb body)))))
-
-(defn async-get-fake [url cb]
-  (fake/with-fake-http ["http://google.com/" "faked"]
-    (httpkit/get "http://google.com/" #(cb %))))

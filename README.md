@@ -36,6 +36,14 @@ Then run server:
 (def feed (slurp "./fixtures/scala02.xml"))
 ```
 
+## Tests
+<https://stackoverflow.com/questions/21294294/run-tests-from-clojure-repl-and-leiningen>
+```
+(require '[clojure.test :refer [run-tests]])
+(require 'your-ns.example-test :reload-all)
+(run-tests 'your-ns.example-test)
+```
+
 ## License
 
 Copyright © 2020 Denis Larionov
