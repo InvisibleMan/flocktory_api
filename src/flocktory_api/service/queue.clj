@@ -1,5 +1,6 @@
 (ns flocktory-api.service.queue
   (:require
+    [clojure.tools.logging :as log]
     [clojure.core.async :as async :refer (go >! chan <! close! <!!)]))
 
 (defn work-parallel [queries max_requests worker processor]
@@ -36,6 +37,6 @@
       (swap! res concat (async/<!! results)))
 
     (async/close! results)
-    (println "[LOG] Fetch time: " (- (System/currentTimeMillis) begin))
+    (log/debug "Fetch time: " (- (System/currentTimeMillis) begin))
     @res
     ))

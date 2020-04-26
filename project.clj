@@ -13,6 +13,11 @@
                  [org.clojure/core.async "0.4.500"]
                  [adamwynne/feedparser-clj "0.5.2"]
                  [lambdaisland/uri "1.2.1"]
+                 [org.clojure/tools.logging "1.0.0"]
+                 [log4j/log4j "1.2.17" :exclusions [javax.mail/mail
+                                                 javax.jms/jms
+                                                 com.sun.jmdk/jmxtools
+                                                 com.sun.jmx/jmxri]]
                  ]
   :profiles {
     :dev {:dependencies [[org.clojure/tools.namespace "0.3.1"]]

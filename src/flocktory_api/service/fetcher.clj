@@ -1,5 +1,6 @@
 (ns flocktory-api.service.fetcher
   (:require [org.httpkit.client :as httpkit]
+            [clojure.tools.logging :as log]
             [clojure.string :as str]))
 
 (def http_opts {
@@ -12,8 +13,8 @@
     }})
 
 (defn async-get [url cb]
-  (println (str "[LOG] fetch url: '" url "'. Start."))
+  (log/debug "Fetch url: '" url "'. Start.")
   (httpkit/get url http_opts (fn [res]
     (let [body (:body res)]
-      (println (str "[LOG] fetch url: '" url "'. Finish. Status: " (:status res)))
+      (log/debug "Fetch url: '" url "'. Finish. Status: " (:status res))
       (cb body)))))
