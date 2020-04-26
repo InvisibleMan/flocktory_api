@@ -16,17 +16,11 @@ lein uberjar
 java -Dserver.host=localhost -Dserver.port=8080 -jar target/flocktory_api-0.1.0-SNAPSHOT-standalone.jar
 ```
 
-You can also generate a war to deploy on a server like Tomcat, Jboss...
-
-```shell
-lein ring uberwar
-```
-
 ## Dev
 Launch the REPL the following commands:
 ```shell
 lein repl
-(require '[flocktory_api.model.queue :as q])
+(require '[flocktory_api.service.queue :as q])
 
 ```
 

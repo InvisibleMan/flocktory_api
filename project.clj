@@ -25,4 +25,5 @@
     :test {:env {:clj-env :test}}}
   :plugins [[lein-ring "0.12.5"]]
   :ring {:handler flocktory_api.app/api-handler}
-  :main flocktory-api.server)
+  :main flocktory-api.server
+  :aot [flocktory-api.server])
